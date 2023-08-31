@@ -141,6 +141,8 @@ function pmproga_checkout_events() {
 
     ?>
     <script>
+    jQuery(document).ready(function() {
+
         // Used later to interact with the
         var interacted = 0;
         
@@ -171,6 +173,7 @@ function pmproga_checkout_events() {
 
         interacted++;
         });
+    });
     </script>
         <?php
 }

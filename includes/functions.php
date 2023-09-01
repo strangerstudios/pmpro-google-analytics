@@ -3,15 +3,26 @@
  * All general functions goes in this file.
  */
 function pmproga_load_script() {
-    $tracking_id = get_option( 'pmproga_tracking_id' );
+    extract( $pmproga_settings = get_option( 'pmproga_settings',
+        array(
+            'tracking_id'       => '',
+            'dont_track_admins' => '',
+            'track_levels'      => array()
+        )
+    ) );
 
-    // Filter to stop tracking for whatever reason needed. (user ID, post, etc.)
-    if ( apply_filters( 'pmproga_stop_tracking', false ) ) {
+    // Filter to stop tracking for whatever reason needed. (user ID, post, etc or custom roles etc)
+    if ( apply_filters( 'pmproga_dont_track', false ) ) {
         return;
     }
 
     // No tracking ID found, lets bail.
     if ( empty( $tracking_id ) ) {
+        return;
+    }
+
+    // Don't track admins if the option is set, added in a filter to allow further customizations and return true/false beyond this.
+    if ( ! empty( $dont_track_admins ) && current_user_can( 'manage_options' ) ) {
         return;
     }
 
@@ -41,7 +52,7 @@ function pmproga_load_script() {
     <?php
 
     // Load all helper functions which determine whether to load or not and runs the <scripts>
-    pmproga_view_item_event(); // Levels page
+    pmproga_view_item_event( $track_levels ); // Levels page
     pmproga_checkout_events(); // Checkout page includes begin_checkout
     pmproga_purchase_event(); // Confirmation page, confirmed checkout.
 
@@ -52,7 +63,7 @@ add_action( 'wp_head', 'pmproga_load_script' );
  * Function to build the view_item event. 
  * Runs on the level select page.
  */
-function pmproga_view_item_event() {
+function pmproga_view_item_event( $track_levels = null ) {
     global $pmpro_pages, $post, $pmpro_level;
 
     // Only run this script on the levels page and no where else.
@@ -67,7 +78,7 @@ function pmproga_view_item_event() {
 
     // Get our specific levels for the levels page.
     $our_levels_to_track = array();
-    $our_levels = array( 1, 3 ); /// Make this filterable or an option for level ID's we want to track.
+    $our_levels = apply_filters( 'pmproga_track_level_ids', $track_levels );
     foreach ( $our_levels as $level_id ) {
         foreach ( $pmpro_all_levels as $level ) {
             if ( $level->id == $level_id && true == $level->allow_signups ) {

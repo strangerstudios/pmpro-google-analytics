@@ -79,6 +79,12 @@ function pmproga_view_item_event( $track_levels = null ) {
     // Get our specific levels for the levels page.
     $our_levels_to_track = array();
     $our_levels = apply_filters( 'pmproga_track_level_ids', $track_levels );
+
+    // Get all available level ID's if no levels are passed to specifically tra
+    if ( empty( $our_levels ) ) {
+        $our_levels = wp_list_pluck( $pmpro_all_levels, 'id' );
+    }
+
     foreach ( $our_levels as $level_id ) {
         foreach ( $pmpro_all_levels as $level ) {
             if ( $level->id == $level_id && true == $level->allow_signups ) {

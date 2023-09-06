@@ -55,6 +55,8 @@ function pmproga_settings_page() {
                             }
                            ?>
                         </select>
+						<br/>
+						<small><?php esc_html_e( 'Leave this option blank to track all levels that allow registrations.', 'pmpro-google-analytics' ); ?></small>
 					</td>
                     <script>
                         // Convert to Select 2

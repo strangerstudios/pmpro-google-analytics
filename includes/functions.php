@@ -187,6 +187,9 @@ function pmproga_checkout_events() {
                 items: [<?php echo json_encode( $gtag_config_event_push['items'] ); ?>] // Product data.
             }
             ); // End of gtag method.
+        
+            // local storage to confirm the user has interacted and cross referenced in the purchase event
+            localStorage.setItem( 'pmproga_purchased_level', '<?php echo $pmpro_level->id; ?>' );
 
         interacted++;
         });
@@ -248,6 +251,12 @@ function pmproga_purchase_event() {
         $gtag_config_ecommerce_products['quantity'] = 1;
         ?>
         <script>
+            jQuery(document).ready(function(){
+            // Only run this if the user has interacted with the checkout page within a single session.
+            if ( localStorage.getItem( 'pmproga_purchased_level' ) !== '<?php echo $pmpro_invoice->membership_level->id; ?>' ) {
+                return;
+            }
+
             gtag( 'event', 'purchase', {
                 transaction_id: '<?php echo $gtag_config_ecommerce_data['transaction_id']; ?>',
                 value: <?php echo $gtag_config_ecommerce_data['value']; ?>,
@@ -259,6 +268,8 @@ function pmproga_purchase_event() {
                 <?php } ?>
                 items: [ <?php echo json_encode( $gtag_config_ecommerce_products ); ?> ]
             });
+            });
+
         </script>
         <?php
 

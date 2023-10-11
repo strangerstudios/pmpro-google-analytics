@@ -282,72 +282,98 @@ function pmproga_purchase_event() {
  */
 function pmproga_custom_dimensions() {
     // Set up the Custom Dimension data.
-	$gtag_config_custom_dimensions = array();
-	$post_type = '';
-	if ( is_singular() ) {
-		$post_type = get_post_type( get_the_ID() );
-	}
-	if ( ! empty( $post_type ) ) {
-		$gtag_config_custom_dimensions['post_type'] = esc_html( $post_type );
-	}
+	$gtag_config_custom_dimensions = apply_filters( 'pmproga_default_custom_dimension', array( 
+        'post_type' => '', 
+        'author' => '', 
+        'category' => '', 
+        'membership_level' => '', 
+        'checkout_level' => ''
+     ) );
 
-	$author = '';
-	if ( is_singular() ) {
-		if ( have_posts() ) {
-			while ( have_posts() ) {
-				the_post();
-			}
-		}
-		$firstname = get_the_author_meta( 'user_firstname' );
-		$lastname  = get_the_author_meta( 'user_lastname' );
-		if ( ! empty( $firstname ) || ! empty( $lastname ) ) {
-				$author = trim( $firstname . ' ' . $lastname );
-		} else {
-			$author = 'user-' . get_the_author_meta( 'ID' );
-		}
-	}
-	if ( ! empty( $author ) ) {
-		$gtag_config_custom_dimensions['author'] = esc_html( $author );
-	}
 
-	$category = '';
-	if ( is_single() ) {
-		$categories = get_the_category( get_the_ID() );
-		if ( $categories ) {
-			foreach ( $categories as $category ) {
-				$category_names[] = $category->slug;
-			}
-		    $category =  implode( ',', $category_names );
-		}
-	}
-	if ( ! empty( $category ) ) {
-		$gtag_config_custom_dimensions['category'] = esc_html( $category );
-	}
+    // Track 'post_type' dimensions.
+    if ( isset( $gtag_config_custom_dimensions['post_type'] ) ) {
+        $post_type = '';
+        if ( is_singular() ) {
+            $post_type = get_post_type( get_the_ID() );
+        }
+        if ( ! empty( $post_type ) ) {
+            $gtag_config_custom_dimensions['post_type'] = esc_html( $post_type );
+        }
+    } 
+    // Track 'author' data  
+    if ( isset( $gtag_config_custom_dimensions['author'] ) ) {
+        $author = '';
+        if ( is_singular() ) {
+            if ( have_posts() ) {
+                while ( have_posts() ) {
+                    the_post();
+                }
+            }
+            $firstname = get_the_author_meta( 'user_firstname' );
+            $lastname  = get_the_author_meta( 'user_lastname' );
+            if ( ! empty( $firstname ) || ! empty( $lastname ) ) {
+                    $author = trim( $firstname . ' ' . $lastname );
+            } else {
+                $author = 'user-' . get_the_author_meta( 'ID' );
+            }
+        }
+        if ( ! empty( $author ) ) {
+            $gtag_config_custom_dimensions['author'] = esc_html( $author );
+        }
+    }
 
-	$membership_level = '';
-	// Get the value to track for the current user.
-	if ( is_user_logged_in() && function_exists( 'pmpro_getMembershipLevelForUser' ) ) {
-		// Get the current users's membership level ID. 
-		$current_user_membership_level = pmpro_getMembershipLevelForUser( get_current_user_id() );
-		if ( empty( $current_user_membership_level ) ) {
-			// Set the tracked membership level ID to no_level.
-			$membership_level = 'no_level';			
-		} else {
-			$membership_level = $current_user_membership_level->ID;
-		}
-	} else {
-		// Set the tracked membership level ID to no_level.
-		$membership_level = 'no_level';
-	}
-	if ( ! empty( $membership_level ) ) {
-		$gtag_config_custom_dimensions['membership_level'] = esc_html( $membership_level );
-	}
+    if ( isset( $gtag_config_custom_dimensions['category'] ) ) {
+        $category = '';
+        if ( is_single() ) {
+            $categories = get_the_category( get_the_ID() );
+            if ( $categories ) {
+                foreach ( $categories as $category ) {
+                    $category_names[] = $category->slug;
+                }
+                $category =  implode( ',', $category_names );
+            }
+        }
+        if ( ! empty( $category ) ) {
+            $gtag_config_custom_dimensions['category'] = esc_html( $category );
+        }
+    }
 
-	// Add the checkout level to tracking if this is the checkout page.
-	if ( ! empty( $pmpro_pages ) && is_page( $pmpro_pages['checkout'] ) ) {
-		global $pmpro_level;
-		$gtag_config_custom_dimensions['checkout_level'] = esc_html( $pmpro_level->id );
-	}
+    // Track members membership level.
+    if ( isset( $gtag_config_custom_dimensions['membership_level'] ) ) {
+        $membership_level = '';
+        // Get the value to track for the current user.
+        if ( is_user_logged_in() && function_exists( 'pmpro_getMembershipLevelForUser' ) ) {
+            // Get the current users's membership level ID. 
+            $current_user_membership_level = pmpro_getMembershipLevelForUser( get_current_user_id() );
+            if ( empty( $current_user_membership_level ) ) {
+                // Set the tracked membership level ID to no_level.
+                $membership_level = 'no_level';			
+            } else {
+                $membership_level = $current_user_membership_level->ID;
+            }
+        } else {
+            // Set the tracked membership level ID to no_level.
+            $membership_level = 'no_level';
+        }
+        if ( ! empty( $membership_level ) ) {
+            $gtag_config_custom_dimensions['membership_level'] = esc_html( $membership_level );
+        }
+    }
 
+    // Track the checkout level.
+	if ( isset( $gtag_config_custom_dimensions['checkout_level'] ) ) {
+        if ( ! empty( $pmpro_pages ) && is_page( $pmpro_pages['checkout'] ) ) {
+            global $pmpro_level;
+            $gtag_config_custom_dimensions['checkout_level'] = esc_html( $pmpro_level->id );
+        }
+    }
+
+    var_dump( $gtag_config_custom_dimensions );
+    /**
+     * Filter the custom dimensions we want to track and allow developers to add or remove custom dimensions.
+     * @param array $gtag_config_custom_dimensions The custom dimensions we want as a key=>value pair.
+     * @return array $gtag_config_custom_dimensions The custom dimensions we want as a key=>value pair.
+     */
     return apply_filters( 'pmproga_custom_dimensions', $gtag_config_custom_dimensions );
 }

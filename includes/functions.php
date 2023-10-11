@@ -300,7 +300,8 @@ function pmproga_custom_dimensions() {
         if ( ! empty( $post_type ) ) {
             $gtag_config_custom_dimensions['post_type'] = esc_html( $post_type );
         }
-    } 
+    }
+
     // Track 'author' data  
     if ( isset( $gtag_config_custom_dimensions['author'] ) ) {
         $author = '';
@@ -323,6 +324,7 @@ function pmproga_custom_dimensions() {
         }
     }
 
+    // Track post category if applicable.
     if ( isset( $gtag_config_custom_dimensions['category'] ) ) {
         $category = '';
         if ( is_single() ) {

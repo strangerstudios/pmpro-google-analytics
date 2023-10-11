@@ -369,7 +369,6 @@ function pmproga_custom_dimensions() {
         }
     }
 
-    var_dump( $gtag_config_custom_dimensions );
     /**
      * Filter the custom dimensions we want to track and allow developers to add or remove custom dimensions.
      * @param array $gtag_config_custom_dimensions The custom dimensions we want as a key=>value pair.

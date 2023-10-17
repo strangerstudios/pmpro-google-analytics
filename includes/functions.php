@@ -2,14 +2,14 @@
 /**
  * All general functions goes in this file.
  */
-function pmproga_load_script() {
-    
+function pmproga4_load_script() {
+
     // Only run this if PMPro is installed.
     if ( ! defined( 'PMPRO_VER' ) ) {
         return;
     }
 
-    extract( $pmproga_settings = get_option( 'pmproga_settings',
+    extract( $pmproga4_settings = get_option( 'pmproga4_settings',
         array(
             'tracking_id'       => '',
             'dont_track_admins' => '',
@@ -18,7 +18,7 @@ function pmproga_load_script() {
     ) );
 
     // Filter to stop tracking for whatever reason needed. (user ID, post, etc or custom roles etc)
-    if ( apply_filters( 'pmproga_dont_track', false ) ) {
+    if ( apply_filters( 'pmproga4_dont_track', false ) ) {
         return;
     }
 
@@ -32,10 +32,10 @@ function pmproga_load_script() {
         return;
     }
 
-    $script_atts_ext = apply_filters('pmpro_ga_script_atts_ext', ' async');
-    $script_atts = apply_filters( 'pmproga_script_atts', '' );
 
-    $custom_dimensions = pmproga_custom_dimensions();
+    $script_atts = apply_filters( 'pmproga4_script_atts', '' );
+
+    $custom_dimensions = pmproga4_custom_dimensions();
     ?>
     <!-- Paid Memberships Pro - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $tracking_id ); ?>"></script>
@@ -58,18 +58,18 @@ function pmproga_load_script() {
     <?php
 
     // Load all helper functions which determine whether to load or not and runs the <scripts>
-    pmproga_view_item_event( $track_levels ); // Levels page
-    pmproga_checkout_events(); // Checkout page includes begin_checkout
-    pmproga_purchase_event(); // Confirmation page, confirmed checkout.
+    pmproga4_view_item_event( $track_levels ); // Levels page
+    pmproga4_checkout_events(); // Checkout page includes begin_checkout
+    pmproga4_purchase_event(); // Confirmation page, confirmed checkout.
 
 }
-add_action( 'wp_head', 'pmproga_load_script' );
+add_action( 'wp_head', 'pmproga4_load_script' );
 
 /**
  * Function to build the view_item event. 
  * Runs on the level select page.
  */
-function pmproga_view_item_event( $track_levels = null ) {
+function pmproga4_view_item_event( $track_levels = null ) {
     global $pmpro_pages, $post, $pmpro_level;
 
     // Only run this script on the levels page and no where else.
@@ -84,7 +84,7 @@ function pmproga_view_item_event( $track_levels = null ) {
 
     // Get our specific levels for the levels page.
     $our_levels_to_track = array();
-    $our_levels = apply_filters( 'pmproga_track_level_ids', $track_levels );
+    $our_levels = apply_filters( 'pmproga4_track_level_ids', $track_levels );
 
     // Get all available level ID's if no levels are passed to specifically tra
     if ( empty( $our_levels ) ) {
@@ -142,7 +142,7 @@ function pmproga_view_item_event( $track_levels = null ) {
  * Function for add_to_cart event.
  * Runs on the Paid Memberships Pro checkout page (page load).
  */
-function pmproga_checkout_events() {
+function pmproga4_checkout_events() {
     global $pmpro_level;
     // Only run this on the checkout page.
     if ( ! pmpro_is_checkout() ) {
@@ -196,7 +196,7 @@ function pmproga_checkout_events() {
             ); // End of gtag method.
         
             // local storage to confirm the user has interacted and cross referenced in the purchase event
-            localStorage.setItem( 'pmproga_purchased_level', '<?php echo $pmpro_level->id; ?>' );
+            localStorage.setItem( 'pmproga4_purchased_level', '<?php echo $pmpro_level->id; ?>' );
 
         interacted++;
         });
@@ -209,7 +209,7 @@ function pmproga_checkout_events() {
  * Add purchase event for GA.
  * This loads on the confirmation page and only if there's local storage.
  */
-function pmproga_purchase_event() {
+function pmproga4_purchase_event() {
     global $pmpro_pages, $pmpro_invoice, $current_user;
 
     // Only run on the confirmation page.
@@ -260,7 +260,7 @@ function pmproga_purchase_event() {
         <script>
             jQuery(document).ready(function(){
             // Only run this if the user has interacted with the checkout page within a single session.
-            if ( localStorage.getItem( 'pmproga_purchased_level' ) !== '<?php echo $pmpro_invoice->membership_level->id; ?>' ) {
+            if ( localStorage.getItem( 'pmproga4_purchased_level' ) !== '<?php echo $pmpro_invoice->membership_level->id; ?>' ) {
                 return;
             }
 
@@ -287,9 +287,9 @@ function pmproga_purchase_event() {
  * Custom Dimensions that _we_ need.
  * @returns array $custom_dimensions The custom dimensions we want as a key=>value pair.
  */
-function pmproga_custom_dimensions() {
+function pmproga4_custom_dimensions() {
     // Set up the Custom Dimension data.
-	$gtag_config_custom_dimensions = apply_filters( 'pmproga_default_custom_dimension', array( 
+	$gtag_config_custom_dimensions = apply_filters( 'pmproga4_default_custom_dimension', array( 
         'post_type' => '', 
         'author' => '', 
         'category' => '', 
@@ -376,5 +376,5 @@ function pmproga_custom_dimensions() {
      * @param array $gtag_config_custom_dimensions The custom dimensions we want as a key=>value pair.
      * @return array $gtag_config_custom_dimensions The custom dimensions we want as a key=>value pair.
      */
-    return apply_filters( 'pmproga_custom_dimensions', $gtag_config_custom_dimensions );
+    return apply_filters( 'pmproga4_custom_dimensions', $gtag_config_custom_dimensions );
 }

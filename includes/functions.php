@@ -334,15 +334,12 @@ function pmproga_custom_dimensions() {
                 }
                 $category =  implode( ',', $category_names );
             }
-
-            // If the category is still empty, let's remove it.
-            if ( empty( $category ) ) {
-                unset( $gtag_config_custom_dimensions['category'] );
-            }
-
         }
+
         if ( ! empty( $category ) ) {
             $gtag_config_custom_dimensions['category'] = esc_html( $category );
+        } else {
+            unset( $gtag_config_custom_dimensions['category'] );
         }
     }
 

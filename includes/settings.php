@@ -35,51 +35,68 @@ function pmproga_settings_page() {
     $all_levels = pmpro_getAllLevels( false, true );
 	?>
 	<h1><?php esc_html_e( 'Paid Memberships Pro - Google Analytics Settings', 'pmpro-google-analytics' ); ?></h1>
-		<table class="form-table">
-			<form method="POST">
-				<tr>
-					<th scope="row" valign="top"><label for="pmproga_tracking_id"><?php esc_html_e( 'GA Tracking ID', 'pmpro-google-analytics' ); ?></label></th>
-					<td>
-						<input type="text" name="pmproga_tracking_id" value="<?php echo esc_attr( $pmproga_settings['tracking_id'] ); ?>"/><br/>
-						<small><?php esc_html_e( 'Your tracking code will start with "G-XXXXXXX". "GTM" tracking codes are not supported.', 'pmpro-google-analytics' ); ?></small>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row" valign="top"><?php esc_html_e( 'Levels to Track', 'pmpro-google-analytics' ); ?></th>
-					<td>
-						<select id="pmproga_track_levels" name="pmproga_track_levels[]" multiple="multiple">
-                           <?php 
-                            foreach( $all_levels as $level ) {
-                                $selected = in_array( $level->id, $pmproga_settings['track_levels'] ) ? 'selected' : '';
-                                echo '<option value="' . esc_attr( $level->id ) . '" ' . $selected . '>' . esc_html( $level->name ) . '</option>';
-                            }
-                           ?>
-                        </select>
-						<br/>
-						<small><?php esc_html_e( 'Leave this option blank to track all levels that allow registrations.', 'pmpro-google-analytics' ); ?></small>
-					</td>
-                    <script>
-                        // Convert to Select 2
-                        jQuery(document).ready(function($) {
-                            $('#pmproga_track_levels').select2();
-                        });
-                    </script>
-				</tr>
-                <tr>
-                    <th scope="row" valign="top"><?php esc_html_e( 'Admin Users', 'pmpro-google-analytics' ); ?></th>
-					<td>
-						<input type="checkbox" name="pmproga_dont_track_admins" id="pmproga_dont_track_admins" value="1" <?php checked( $pmproga_settings['dont_track_admins'], 1 ); ?>/>
-						<label for="pmproga_dont_track_admins"><?php esc_html_e( 'Disable tracking of Admin-level users.', 'pmpro-google-analytics' ); ?></label>
-					</td>
-                </tr>
-				<tr>
-					<td>
-						<input type="submit" name="pmproga_save" value="Save Settings" class="button button-primary" /> 
-						<?php wp_nonce_field( 'pmproga_save', 'pmproga_save' ); ?>
-					</td>
-				</tr>
-		 </form>
-		</table>
+	<br class="wp-header-end" />
+		<form method="POST">
+			<h2><?php esc_html_e( 'Connect to Google Analytics', 'pmpro-google-analytics' ); ?></h2>
+			<p><?php esc_html_e( 'Enter your Google Analytics measurement ID. This allows Google Analytics to measure traffic and interactions across your website, as well as ecommerce conversions across the checkout experience.', 'pmpro-google-analytics' ); ?></p>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th scope="row" valign="top"><label for="pmproga_tracking_id"><?php esc_html_e( 'Measurement ID', 'pmpro-google-analytics' ); ?></label></th>
+						<td>
+							<input type="text" name="pmproga_tracking_id" value="<?php echo esc_attr( $pmproga_settings['tracking_id'] ); ?>"/><br/>
+							<small><?php esc_html_e( 'Your measurement ID must start with "G-XXXXXXX". "GTM" tracking codes are not supported.', 'pmpro-google-analytics' ); ?></small>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2><?php esc_html_e( 'Enhanced Ecommerce Tracking', 'pmpro-google-analytics' ); ?></h2>
+			<p><?php esc_html_e( 'Limit which membership level checkouts are tracked as conversion events in Google Analytics. If you do not adjust this setting, all membership checkouts will be tracked, including free checkouts.', 'pmpro-google-analytics' ); ?></p>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th scope="row" valign="top"><?php esc_html_e( 'Levels to Track', 'pmpro-google-analytics' ); ?></th>
+						<td>
+							<select id="pmproga_track_levels" name="pmproga_track_levels[]" multiple="multiple">
+							<?php 
+								foreach( $all_levels as $level ) {
+									$selected = in_array( $level->id, $pmproga_settings['track_levels'] ) ? 'selected' : '';
+									echo '<option value="' . esc_attr( $level->id ) . '" ' . $selected . '>' . esc_html( $level->name ) . '</option>';
+								}
+							?>
+							</select>
+							<br/>
+							<small><?php esc_html_e( 'Leave this option blank to track all levels that allow registrations.', 'pmpro-google-analytics' ); ?></small>
+						</td>
+						<script>
+							// Convert to Select 2
+							jQuery(document).ready(function($) {
+								$('#pmproga_track_levels').select2();
+							});
+						</script>
+					</tr>
+				</tbody>
+			</table>
+			<h2><?php esc_html_e( 'Exclude From Tracking', 'pmpro-google-analytics' ); ?></h2>
+			<p><?php esc_html_e( 'Optionally exclude administrator users from tracking.', 'pmpro-google-analytics' ); ?></p>
+			<table class="form-table">
+				<tbody>	
+					<tr>
+						<th scope="row" valign="top"><?php esc_html_e( 'Admin Users', 'pmpro-google-analytics' ); ?></th>
+						<td>
+							<input type="checkbox" name="pmproga_dont_track_admins" id="pmproga_dont_track_admins" value="1" <?php checked( $pmproga_settings['dont_track_admins'], 1 ); ?>/>
+							<label for="pmproga_dont_track_admins"><?php esc_html_e( 'Disable tracking of Admin-level users.', 'pmpro-google-analytics' ); ?></label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" name="pmproga_save" value="Save Settings" class="button button-primary" /> 
+							<?php wp_nonce_field( 'pmproga_save', 'pmproga_save' ); ?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 	<?php
 }
 

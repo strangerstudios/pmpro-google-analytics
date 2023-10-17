@@ -286,8 +286,7 @@ function pmproga_custom_dimensions() {
         'post_type' => '', 
         'author' => '', 
         'category' => '', 
-        'membership_level' => '', 
-        'checkout_level' => ''
+        'membership_level' => ''
      ) );
 
 
@@ -335,6 +334,12 @@ function pmproga_custom_dimensions() {
                 }
                 $category =  implode( ',', $category_names );
             }
+
+            // If the category is still empty, let's remove it.
+            if ( empty( $category ) ) {
+                unset( $gtag_config_custom_dimensions['category'] );
+            }
+
         }
         if ( ! empty( $category ) ) {
             $gtag_config_custom_dimensions['category'] = esc_html( $category );
@@ -360,14 +365,6 @@ function pmproga_custom_dimensions() {
         }
         if ( ! empty( $membership_level ) ) {
             $gtag_config_custom_dimensions['membership_level'] = esc_html( $membership_level );
-        }
-    }
-
-    // Track the checkout level.
-	if ( isset( $gtag_config_custom_dimensions['checkout_level'] ) ) {
-        if ( ! empty( $pmpro_pages ) && is_page( $pmpro_pages['checkout'] ) ) {
-            global $pmpro_level;
-            $gtag_config_custom_dimensions['checkout_level'] = esc_html( $pmpro_level->id );
         }
     }
 

@@ -39,7 +39,7 @@ function pmproga_load_script() {
 			gtag('js', new Date());
 	        gtag('config', 
             '<?php echo esc_attr( $tracking_id ); ?>', 
-            { 
+            {
                 'currency': '<?php echo get_option( "pmpro_currency" ); ?>',
                 <?php if ( ! empty( $custom_dimensions ) ) { 
                     foreach ( $custom_dimensions as $key => $value ) { ?>
@@ -290,7 +290,6 @@ function pmproga_custom_dimensions() {
         'membership_level' => ''
      ) );
 
-
     // Track 'post_type' dimensions.
     if ( isset( $gtag_config_custom_dimensions['post_type'] ) ) {
         $post_type = '';
@@ -327,7 +326,7 @@ function pmproga_custom_dimensions() {
     // Track post category if applicable.
     if ( isset( $gtag_config_custom_dimensions['category'] ) ) {
         $category = '';
-        if ( is_single() ) {
+        if ( is_singular( 'post' ) ) {
             $categories = get_the_category( get_the_ID() );
             if ( $categories ) {
                 foreach ( $categories as $category ) {

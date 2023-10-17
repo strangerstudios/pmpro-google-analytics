@@ -9,6 +9,10 @@
  * @since 0.1
  */
 function pmproga_admin_menu() {
+	if ( ! defined( 'PMPRO_VER' ) ) {
+		return;
+	}
+
 	add_submenu_page( 'options-general.php', __( 'PMPro Google Analytics', 'pmpro-google-analytics' ), __( 'PMPro Google Analytics', 'pmpro-google-analytics' ), 'manage_options', 'pmpro-google-analytics', 'pmproga_settings_page' );
 }
 add_action( 'admin_menu', 'pmproga_admin_menu' );
@@ -19,6 +23,7 @@ add_action( 'admin_menu', 'pmproga_admin_menu' );
  * @since 0.1
  */
 function pmproga_settings_page() {
+
 	// Save settings if data has been posted.
 	pmproga_save_settings();
 

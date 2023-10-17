@@ -3,6 +3,12 @@
  * All general functions goes in this file.
  */
 function pmproga_load_script() {
+    
+    // Only run this if PMPro is installed.
+    if ( ! defined( 'PMPRO_VER' ) ) {
+        return;
+    }
+
     extract( $pmproga_settings = get_option( 'pmproga_settings',
         array(
             'tracking_id'       => '',

@@ -149,6 +149,7 @@ function pmproga_checkout_events() {
     $gtag_config_ecommerce_products['item_name'] = $pmpro_level->name;
     $gtag_config_ecommerce_products['affiliation'] = get_bloginfo( 'name' );
     $gtag_config_ecommerce_products['index'] = 0;
+    $gtag_config_ecommerce_products['price'] = $pmpro_level->initial_payment;
     $gtag_config_ecommerce_products['quantity'] = 1;
 
     // Add the product data to the ecommerce data.

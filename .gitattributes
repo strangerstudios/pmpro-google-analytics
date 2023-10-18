@@ -1,3 +1,4 @@
 .gitattributes export-ignore
+.github export-ignore
 readme.MD export-ignore
 pmpro-google-analytics-banner.png export-ignore

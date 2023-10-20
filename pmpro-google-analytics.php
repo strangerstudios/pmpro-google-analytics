@@ -18,6 +18,9 @@ define( 'PMPROGA_BASENAME', plugin_basename( __FILE__ ) );
 include PMPROGA_DIR . '/includes/settings.php';
 include PMPROGA_DIR . '/includes/functions.php';
 
+/**
+ * Show a message if Paid Memberships Pro is inactive or not installed.
+ */
 function pmproga4_required_installed() {
 
     // The required plugins for this Add On to work.
@@ -46,7 +49,7 @@ function pmproga4_required_installed() {
             '<div class="notice notice-warning"><p>%s</p></div>',
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
-                esc_html__( 'Paid Memberships Pro - Google Analytics', 'pmpro-google-analytics' ),
+                esc_html__( 'Paid Memberships Pro', 'pmpro-google-analytics' ),
                 implode( ', ', $install_plugins ) // $install_plugins was escaped when built.
             )
         );
@@ -78,7 +81,7 @@ function pmproga4_required_installed() {
             '<div class="notice notice-warning"><p>%s</p></div>',
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
-                esc_html__( 'Paid Memberships Pro - Google Analytics', 'pmpro-google-analytics' ),
+                esc_html__( 'Paid Memberships Pro', 'pmpro-google-analytics' ),
                 implode( ', ', $activate_plugins ) // $activate_plugins was escaped when built.
             )
         );
@@ -90,9 +93,6 @@ add_action( 'admin_notices', 'pmproga4_required_installed' );
 
 /**
  * Add a link to the settings page to the plugin action links.
- *
- * @param [type] $links
- * @return void
  */
 function pmproga4_plugin_action_links( $links ) {
 

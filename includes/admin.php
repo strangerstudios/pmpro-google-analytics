@@ -95,11 +95,15 @@ function pmproga4_show_setup_notice() {
         return;
     }
 
+    // Don't show on the actual settings page.
+    if ( $_REQUEST['page'] === 'pmpro-google-analytics' ) {
+        return;
+    }
+
     $pmproga4_options = get_option( 'pmproga4_settings' );
 
-
     //Show admin notice if options are empty.
-    if ( ! $pmproga4_options ) {
+    if ( ! $pmproga4_options || empty( $pmproga4_options['tracking_id'] ) ) {
         ?>
         <div class="notice notice-warning">
             <p><?php esc_html_e( 'Please configure the Google Analytics settings for Paid Memberships Pro.', 'pmpro-google-analytics' ); ?></p>

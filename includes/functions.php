@@ -70,11 +70,13 @@ add_action( 'wp_head', 'pmproga4_load_script' );
  * Runs on the level select page.
  */
 function pmproga4_view_item_event( $track_levels = null ) {
-    global $pmpro_pages, $post, $pmpro_level;
-
-    // Only run this script on the levels page and no where else.
-    if ( ! is_page( $pmpro_pages['levels'] ) || strpos( $post->post_content, 'pmpro_levels' ) == false ) {
-        return;
+    global $post, $pmpro_level;
+    
+    // Post content doesn't have the shortcode or the block, bail.
+    if ( strpos( $post->post_content, 'pmpro_levels' ) == false && strpos( $post->post_content, 'pmpro_advanced_levels' ) == false ) {
+        if ( ! has_block( 'pmpro/levels-page' ) ) {
+            return;
+        }
     }
 
     // Make sure pmpro_levels has all levels.

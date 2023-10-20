@@ -304,6 +304,8 @@ function pmproga4_custom_dimensions() {
         }
         if ( ! empty( $post_type ) ) {
             $gtag_config_custom_dimensions['post_type'] = esc_html( $post_type );
+        } else {
+            unset( $gtag_config_custom_dimensions['post_type'] );
         }
     }
 
@@ -326,6 +328,8 @@ function pmproga4_custom_dimensions() {
         }
         if ( ! empty( $author ) ) {
             $gtag_config_custom_dimensions['author'] = esc_html( $author );
+        } else {
+            unset( $gtag_config_custom_dimensions['author'] );
         }
     }
 

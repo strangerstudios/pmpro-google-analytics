@@ -9,7 +9,8 @@
  * @since 0.1
  */
 function pmproga4_admin_menu() {
-	if ( ! defined( 'PMPRO_VER' ) ) {
+	
+	if ( ! defined( 'PMPRO_VERSION' ) ) {
 		return;
 	}
 

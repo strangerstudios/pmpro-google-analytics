@@ -87,3 +87,28 @@ function pmproga4_required_installed() {
     }
 }
 add_action( 'admin_notices', 'pmproga4_required_installed' );
+
+/**
+ * Add a link to the settings page to the plugin action links.
+ *
+ * @param [type] $links
+ * @return void
+ */
+function pmproga4_plugin_action_links( $links ) {
+
+    // Paid Memberships Pro not activated, let's bail.
+	if ( ! defined( 'PMPRO_VERSION' ) ) {
+        return $links;
+    }
+
+    // Check if the user is an admin
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return $links;
+    }
+
+	$new_links = array(
+		'<a href="' . admin_url( 'options-general.php?page=pmpro-google-analytics' ) . '">' . esc_html__( 'Settings', 'pmpro-google-analytics' ) . '</a>',
+	);
+	return array_merge( $new_links, $links );
+}
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmproga4_plugin_action_links' );

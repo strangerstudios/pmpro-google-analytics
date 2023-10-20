@@ -5,7 +5,7 @@
 function pmproga4_load_script() {
 
     // Only run this if PMPro is installed.
-    if ( ! defined( 'PMPRO_VER' ) ) {
+    if ( ! defined( 'PMPRO_VERSION' ) ) {
         return;
     }
 

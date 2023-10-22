@@ -215,7 +215,7 @@ function pmproga4_checkout_events() {
 
     // Build an array of product data.
     $gtag_config_ecommerce_products = array();
-    $gtag_config_ecommerce_products['item_id'] = 'pmpro-' . $pmpro_level->id;
+    $gtag_config_ecommerce_products['item_id'] = $pmpro_level->id;
     $gtag_config_ecommerce_products['item_name'] = $pmpro_level->name;
     $gtag_config_ecommerce_products['affiliation'] = get_bloginfo( 'name' );
     $gtag_config_ecommerce_products['index'] = 0;
@@ -310,7 +310,7 @@ function pmproga4_purchase_event() {
 
         // Build an array of product data.
         $gtag_config_ecommerce_products = array();
-        $gtag_config_ecommerce_products['item_id'] = 'pmpro-' . $pmpro_invoice->membership_level->id;
+        $gtag_config_ecommerce_products['item_id'] = $pmpro_invoice->membership_level->id;
         $gtag_config_ecommerce_products['item_name'] = $pmpro_invoice->membership_level->name;
         $gtag_config_ecommerce_products['affiliation'] = get_bloginfo( 'name' );
         if ( $pmpro_invoice->getDiscountCode() ) {

@@ -1,4 +1,5 @@
+# Items to ignore when downloading a zip
+pmpro-google-analytics-banner.png export-ignore
 .gitattributes export-ignore
 .github export-ignore
-readme.MD export-ignore
-pmpro-google-analytics-banner.png export-ignore
+README.md export-ignore

@@ -100,7 +100,10 @@ function pmproga4_settings_page() {
 		<p class="submit"><input type="submit" name="pmproga4_save" value="Save Settings" class="button button-primary" /></p>
 		<?php wp_nonce_field( 'pmproga4_save', 'pmproga4_save' ); ?>
 	</form>
+	<hr />
+	<p><a href="https://www.paidmembershipspro.com/add-ons/google-analytics/?utm_source=plugin&utm_medium=pmpro-google-analytics-admin&utm_campaign=add-ons" target="_blank"><?php esc_html_e( 'Documentation', 'pmpro-google-analytics' ); ?></a> | <a href="https://www.paidmembershipspro.com/support/?utm_source=plugin&utm_medium=pmpro-google-analytics-admin&utm_campaign=support" target="_blank"><?php esc_html_e( 'Support', 'pmpro-google-analytics' ); ?></a></p>
 	<?php
+	require_once( PMPRO_DIR . "/adminpages/admin_footer.php" );
 }
 
 /**

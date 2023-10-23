@@ -34,14 +34,13 @@ function pmproga4_required_installed() {
             '<div class="notice notice-warning"><p>%s</p></div>',
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
-                esc_html__( 'Paid Memberships Pro', 'pmpro-google-analytics' ),
+                esc_html__( 'Google Analytics Integration', 'pmpro-google-analytics' ),
                 implode( ', ', $install_plugins ) // $install_plugins was escaped when built.
             )
         );
 
         return; // Bail here, so we only show one notice at a time.
     }
-
 
     // Check if the required plugins are active and show a notice with activation links if they are not
     $inactive_plugins = array();
@@ -66,7 +65,7 @@ function pmproga4_required_installed() {
             '<div class="notice notice-warning"><p>%s</p></div>',
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
-                esc_html__( 'Paid Memberships Pro', 'pmpro-google-analytics' ),
+                esc_html__( 'Google Analytics Integration', 'pmpro-google-analytics' ),
                 implode( ', ', $activate_plugins ) // $activate_plugins was escaped when built.
             )
         );
@@ -103,7 +102,7 @@ function pmproga4_show_setup_notice() {
     $pmproga4_options = get_option( 'pmproga4_settings' );
 
     //Show admin notice if options are empty.
-    if ( ! $pmproga4_options || empty( $pmproga4_options['tracking_id'] ) ) {
+    if ( ! $pmproga4_options || empty( $pmproga4_options['measurement_id'] ) ) {
         ?>
         <div class="notice notice-warning">
             <p><?php esc_html_e( 'Please configure the Google Analytics settings for Paid Memberships Pro.', 'pmpro-google-analytics' ); ?></p>
@@ -134,4 +133,22 @@ function pmproga4_plugin_action_links( $links ) {
 	);
 	return array_merge( $new_links, $links );
 }
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmproga4_plugin_action_links' );
+add_filter( 'plugin_action_links_' . PMPROGA_BASENAME, 'pmproga4_plugin_action_links' );
+
+/**
+ * Function to add links to the plugin row meta
+ *
+ * @param array  $links Array of links to be shown in plugin meta.
+ * @param string $file Filename of the plugin meta is being shown for.
+ */
+function pmproga_plugin_row_meta( $links, $file ) {
+	if ( strpos( $file, 'pmpro-google-analytics.php' ) !== false ) {
+		$new_links = array(
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/google-analytics/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Docs', 'pmpro-google-analytics' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Support', 'pmpro-google-analytics' ) . '</a>',
+		);
+		$links = array_merge( $links, $new_links );
+	}
+	return $links;
+}
+add_filter( 'plugin_row_meta', 'pmproga_plugin_row_meta', 10, 2 );

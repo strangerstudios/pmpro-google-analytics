@@ -11,6 +11,8 @@ Connect Paid Memberships Pro to Google Analytics 4 to measure traffic, interacti
 
 This plugin connects your membership site to Google Analytics to measure traffic and interactions across your website, as well as ecommerce conversions (new memberships and subscriptions) across the checkout experience.
 
+Google Analytics Integration for Paid Memberships Pro includes full GA4 integration. With this plugin active, you do not need to use any other Google Analytics plugins (e.g. Monster Insights or Google Site Kit).
+
 == Installation ==
 
 = Prerequisites =

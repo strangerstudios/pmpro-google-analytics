@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Paid Memberships Pro - Google Analytics Integration
- * Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-google-analytics-integration/
- * Description: Adds Google Analytics Ecommerce Tracking to Paid Memberships Pro.
+ * Plugin URI: https://www.paidmembershipspro.com/add-ons/google-analytics/
+ * Description: Connect Paid Memberships Pro to Google Analytics 4 to measure traffic, interactions, and ecommerce conversions.
  * Version: 0.1
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com

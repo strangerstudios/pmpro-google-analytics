@@ -8,6 +8,8 @@
 ### Welcome to the Paid Memberships Pro - Google Analytics GitHub Repository
 This plugin connects your membership site to Google Analytics to measure traffic and interactions across your website, as well as ecommerce conversions (new memberships and subscriptions) across the checkout experience.
 
+Google Analytics Integration for Paid Memberships Pro includes full GA4 integration. With this plugin active, you do not need to use any other Google Analytics plugins (e.g. Monster Insights or Google Site Kit).
+
 For more information please visit [paidmembershipspro.com/add-ons/google-analytics](https://www.paidmembershipspro.com/add-ons/google-analytics)
 
 ## Installation ##

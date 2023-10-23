@@ -11,7 +11,7 @@ function pmproga4_load_script() {
 
     extract( $pmproga4_settings = get_option( 'pmproga4_settings',
         array(
-            'tracking_id'       => '',
+            'measurement_id'       => '',
             'dont_track_admins' => '',
             'track_levels'      => array()
         )
@@ -34,8 +34,8 @@ function pmproga4_load_script() {
         return;
     }
 
-    // No tracking ID found, let's bail.
-    if ( empty( $tracking_id ) ) {
+    // No measurement ID found, let's bail.
+    if ( empty( $measurement_id ) ) {
         return;
     }
 
@@ -65,13 +65,13 @@ function pmproga4_load_script() {
     $user_properties = pmproga4_user_properties();
     ?>
     <!-- Paid Memberships Pro - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $tracking_id ); ?>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $measurement_id ); ?>"></script>
     <script <?php echo esc_attr($script_atts); ?>>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 	        gtag('config', 
-            '<?php echo esc_attr( $tracking_id ); ?>', 
+            '<?php echo esc_attr( $measurement_id ); ?>',
             {
                 'currency': '<?php echo get_option( "pmpro_currency" ); ?>',
                 <?php if ( is_user_logged_in() ) { ?>

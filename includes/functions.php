@@ -24,7 +24,7 @@ function pmproga4_load_script() {
      * scenarios, such as based on user ID, post, custom roles, etc. If the filter returns
      * `true`, tracking will be halted.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param bool $stop_tracking Default value is `false`. If set to `true` by any filter, tracking will be halted.
      *
@@ -50,7 +50,7 @@ function pmproga4_load_script() {
      * Allows developers to customize or add specific attributes to the Google Analytics script tag
      * for enhanced control or additional features.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param string $script_atts Default value is an empty string. Contains attributes for the GA script tag.
      *
@@ -115,7 +115,7 @@ function pmproga4_view_item_event( $track_levels = null ) {
      * This filter allows developers to control when the 'view item' event should be 
      * tracked. By default, it tracks the event when the current page matches the PMPro levels page.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param bool $track_view_item_event Default value is determined by whether the current page is the PMPro levels page.
      *
@@ -139,7 +139,7 @@ function pmproga4_view_item_event( $track_levels = null ) {
      * Allows developers to specify or modify which membership levels should be 
      * tracked by the Google Analytics integration.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param array $track_levels Default array of membership level IDs to track from plugin settings.
      *
@@ -356,7 +356,7 @@ function pmproga4_custom_dimensions() {
      * This function allows for the customization of default custom dimensions
      * by applying the 'pmproga4_default_custom_dimension' filter.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param array $gtag_config_custom_dimensions An array of custom dimensions as key=>value pairs.
      *
@@ -422,7 +422,7 @@ function pmproga4_custom_dimensions() {
     /**
      * Filters the custom dimensions to allow developers to add or remove custom dimensions.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param array $gtag_config_custom_dimensions Custom dimensions as a key=>value pair.
      * @return array Filtered custom dimensions as a key=>value pair.
@@ -443,7 +443,7 @@ function pmproga4_user_properties() {
      * This function allows for the customization of default user properties
      * by applying the 'pmproga4_default_user_properties' filter.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param array $gtag_config_user_properties An array of user properties as key=>value pairs.
      *
@@ -478,7 +478,7 @@ function pmproga4_user_properties() {
    /**
      * Filters the user properties to allow developers to add or remove properties.
      *
-     * @since 0.1
+     * @since 1.0
      *
      * @param array $gtag_config_user_properties User properties as a key=>value pair.
      * @return array Filtered user properties as a key=>value pair.

@@ -6,7 +6,7 @@
 /**
  * Register the menu link in the WordPress dashboard.
  *
- * @since 0.1
+ * @since 1.0
  */
 function pmproga4_admin_menu() {
 	
@@ -21,7 +21,7 @@ add_action( 'admin_menu', 'pmproga4_admin_menu' );
 /**
  * The settings page for the options.
  *
- * @since 0.1
+ * @since 1.0
  */
 function pmproga4_settings_page() {
 

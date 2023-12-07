@@ -75,7 +75,7 @@ function pmproga4_load_script() {
             {
                 'currency': '<?php echo get_option( "pmpro_currency" ); ?>',
                 <?php if ( is_user_logged_in() ) { ?>
-                'user_id': '<? echo get_current_user_id(); ?>',
+                'user_id': '<?php echo get_current_user_id(); ?>',
                 <?php } ?>
                 <?php if ( ! empty( $custom_dimensions ) ) { 
                     foreach ( $custom_dimensions as $key => $value ) { ?>

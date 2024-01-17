@@ -208,6 +208,11 @@ function pmproga4_view_item_event( $track_levels = null ) {
 function pmproga4_checkout_events() {
     global $pmpro_level;
 
+	// Bail if level is not set.
+	if( !isset( $pmpro_level ) ) {
+		return;
+	}
+
     // Only run this on the checkout page.
     if ( ! pmpro_is_checkout() ) {
         return;

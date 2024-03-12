@@ -1,106 +1,144 @@
-# Copyright (C) 2023 Paid Memberships Pro
+# Copyright (C) 2024 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Google Analytics Integration plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Google Analytics Integration 0.1\n"
+"Project-Id-Version: Paid Memberships Pro - Google Analytics Integration 1.0\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-10-18T14:28:23+00:00\n"
+"POT-Creation-Date: 2024-03-12T13:07:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: pmpro-google-analytics\n"
 
 #. Plugin Name of the plugin
+#: pmpro-google-analytics.php
 msgid "Paid Memberships Pro - Google Analytics Integration"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://www.paidmembershipspro.com/add-ons/pmpro-google-analytics-integration/"
+#: pmpro-google-analytics.php
+msgid "https://www.paidmembershipspro.com/add-ons/google-analytics/"
 msgstr ""
 
 #. Description of the plugin
-msgid "Adds Google Analytics Ecommerce Tracking to Paid Memberships Pro."
+#: pmpro-google-analytics.php
+msgid "Connect Paid Memberships Pro to Google Analytics 4 to measure traffic, interactions, and ecommerce conversions."
 msgstr ""
 
 #. Author of the plugin
-#: pmpro-google-analytics.php:25
+#: pmpro-google-analytics.php
+#: includes/admin.php:13
 msgid "Paid Memberships Pro"
 msgstr ""
 
 #. Author URI of the plugin
+#: pmpro-google-analytics.php
 msgid "https://www.paidmembershipspro.com"
 msgstr ""
 
-#: includes/settings.php:16
-msgid "PMPro Google Analytics"
-msgstr ""
-
-#: includes/settings.php:42
-msgid "Paid Memberships Pro - Google Analytics Settings"
-msgstr ""
-
-#: includes/settings.php:45
-msgid "Connect to Google Analytics"
-msgstr ""
-
-#: includes/settings.php:46
-msgid "Enter your Google Analytics measurement ID. This allows Google Analytics to measure traffic and interactions across your website, as well as ecommerce conversions across the checkout experience."
-msgstr ""
-
-#: includes/settings.php:50
-msgid "Measurement ID"
-msgstr ""
-
-#: includes/settings.php:53
-msgid "Your measurement ID must start with \"G-XXXXXXX\". \"GTM\" tracking codes are not supported."
-msgstr ""
-
-#: includes/settings.php:58
-msgid "Enhanced Ecommerce Tracking"
-msgstr ""
-
-#: includes/settings.php:59
-msgid "Limit which membership level checkouts are tracked as conversion events in Google Analytics. If you do not adjust this setting, all membership checkouts will be tracked, including free checkouts."
-msgstr ""
-
-#: includes/settings.php:63
-msgid "Levels to Track"
-msgstr ""
-
-#: includes/settings.php:74
-msgid "Leave this option blank to track all levels that allow registrations."
-msgstr ""
-
-#: includes/settings.php:85
-msgid "Exclude From Tracking"
-msgstr ""
-
-#: includes/settings.php:86
-msgid "Optionally exclude administrator users from tracking."
-msgstr ""
-
-#: includes/settings.php:90
-msgid "Admin Users"
-msgstr ""
-
-#: includes/settings.php:93
-msgid "Disable tracking of Admin-level users."
-msgstr ""
-
-#: includes/settings.php:128
-msgid "Settings saved."
-msgstr ""
-
-#: pmpro-google-analytics.php:48
-#: pmpro-google-analytics.php:80
+#: includes/admin.php:36
+#: includes/admin.php:67
 msgid "The following plugin(s) are required for the %1$s plugin to work: %2$s"
 msgstr ""
 
-#: pmpro-google-analytics.php:49
-#: pmpro-google-analytics.php:81
-msgid "Paid Memberships Pro - Google Analytics"
+#: includes/admin.php:37
+#: includes/admin.php:68
+msgid "Google Analytics Integration"
+msgstr ""
+
+#: includes/admin.php:108
+msgid "Please configure the Google Analytics settings for Paid Memberships Pro."
+msgstr ""
+
+#: includes/admin.php:109
+msgid "Configure Google Analytics Settings"
+msgstr ""
+
+#: includes/admin.php:132
+msgid "Settings"
+msgstr ""
+
+#: includes/admin.php:147
+msgid "View Documentation"
+msgstr ""
+
+#: includes/admin.php:147
+msgid "Docs"
+msgstr ""
+
+#: includes/admin.php:148
+msgid "Visit Customer Support Forum"
+msgstr ""
+
+#: includes/admin.php:148
+#: includes/settings.php:104
+msgid "Support"
+msgstr ""
+
+#: includes/settings.php:17
+msgid "PMPro Google Analytics"
+msgstr ""
+
+#: includes/settings.php:45
+msgid "Paid Memberships Pro - Google Analytics Settings"
+msgstr ""
+
+#: includes/settings.php:48
+msgid "Connect to Google Analytics"
+msgstr ""
+
+#: includes/settings.php:49
+msgid "Enter your Google Analytics measurement ID. This allows Google Analytics to measure traffic and interactions across your website, as well as ecommerce conversions across the checkout experience."
+msgstr ""
+
+#: includes/settings.php:53
+msgid "Measurement ID"
+msgstr ""
+
+#: includes/settings.php:56
+msgid "Your measurement ID must start with \"G-XXXXXXX\". \"GTM\" tracking codes are not supported."
+msgstr ""
+
+#: includes/settings.php:61
+msgid "Enhanced Ecommerce Tracking"
+msgstr ""
+
+#: includes/settings.php:62
+msgid "Limit which membership level checkouts are tracked as conversion events in Google Analytics. If you do not adjust this setting, all membership checkouts will be tracked, including free checkouts."
+msgstr ""
+
+#: includes/settings.php:66
+msgid "Levels to Track"
+msgstr ""
+
+#: includes/settings.php:76
+msgid "Leave this option blank to track all levels that allow registrations."
+msgstr ""
+
+#: includes/settings.php:87
+msgid "Exclude From Tracking"
+msgstr ""
+
+#: includes/settings.php:88
+msgid "Optionally exclude administrator users from tracking."
+msgstr ""
+
+#: includes/settings.php:92
+msgid "Admin Users"
+msgstr ""
+
+#: includes/settings.php:95
+msgid "Disable tracking of adminstrator users."
+msgstr ""
+
+#: includes/settings.php:104
+msgid "Documentation"
+msgstr ""
+
+#: includes/settings.php:147
+msgid "Settings saved."
 msgstr ""

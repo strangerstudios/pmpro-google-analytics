@@ -2,8 +2,8 @@
 Contributors: strangerstudios, andrewza
 Tags: paid memberships pro, pmpro, google analytics, analytics, ga4, conversions
 Requires at least: 5.2
-Tested up to: 6.3.2
-Stable tag: 1.0
+Tested up to: 6.4
+Stable tag: 1.0.1
 
 Connect Paid Memberships Pro to Google Analytics 4 to measure traffic, interactions, and ecommerce conversions across your membership site.
 
@@ -34,6 +34,8 @@ Google Analytics Integration for Paid Memberships Pro includes full GA4 integrat
 View full documentation at: https://www.paidmembershipspro.com/add-ons/google-analytics/
 
 == Changelog ==
+= 1.0.1 - 2024-03-12 =
+* BUG FIX: Fixed an issue where the user ID wasn't being passed to Analytics correctly for logged-in users. (@dwanjuki)
 
 = 1.0 - 2023-10-23 =
 * Initial release.

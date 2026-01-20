@@ -385,10 +385,11 @@ function pmproga4_custom_dimensions() {
     if ( isset( $gtag_config_custom_dimensions['author'] ) ) {
         $author = '';
         if ( is_singular() ) {
-            if ( have_posts() ) {
-                while ( have_posts() ) {
-                    the_post();
-                    $author = get_the_author_meta( 'display_name' );
+            $post_id = get_the_ID();
+            if ( $post_id ) {
+                $author_id = get_post_field( 'post_author', $post_id );
+                if ( $author_id ) {
+                    $author = get_the_author_meta( 'display_name', $author_id );
                 }
             }
         }

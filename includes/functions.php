@@ -381,23 +381,22 @@ function pmproga4_custom_dimensions() {
         }
     }
 
-    // Track 'author' dimension.
-    if ( isset( $gtag_config_custom_dimensions['author'] ) ) {
-        $author = '';
-        if ( is_singular() ) {
-            if ( have_posts() ) {
-                while ( have_posts() ) {
-                    the_post();
-                    $author = get_the_author_meta( 'display_name' );
-                }
-            }
-        }
-        if ( ! empty( $author ) ) {
-            $gtag_config_custom_dimensions['author'] = esc_html( $author );
-        } else {
-            unset( $gtag_config_custom_dimensions['author'] );
-        }
-    }
+	// Track 'author' dimension.
+	if ( isset( $gtag_config_custom_dimensions['author'] ) && is_singular() ) {
+		$post_id = get_queried_object_id(); // Make sure the post data is available.
+
+		$author = '';
+		if ( $post_id ) {
+			$author_id = (int) get_post_field( 'post_author', $post_id );
+			$author    = $author_id ? get_the_author_meta( 'display_name', $author_id ) : '';
+		}
+
+		if ( $author !== '' ) {
+			$gtag_config_custom_dimensions['author'] = esc_html( $author );
+		} else {
+			unset( $gtag_config_custom_dimensions['author'] );
+		}
+	}
 
     // Track post category, if applicable.
     if ( isset( $gtag_config_custom_dimensions['category'] ) ) {

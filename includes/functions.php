@@ -385,14 +385,9 @@ function pmproga4_custom_dimensions() {
     if ( isset( $gtag_config_custom_dimensions['author'] ) ) {
         $author = '';
         if ( is_singular() ) {
-            $post_id = get_the_ID();
-            if ( $post_id ) {
-                $author_id = get_post_field( 'post_author', $post_id );
-                if ( $author_id ) {
-                    $author = get_the_author_meta( 'display_name', $author_id );
-                }
-            }
+           $author = get_the_author_meta( 'display_name' );
         }
+
         if ( ! empty( $author ) ) {
             $gtag_config_custom_dimensions['author'] = esc_html( $author );
         } else {

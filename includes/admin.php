@@ -141,7 +141,7 @@ add_filter( 'plugin_action_links_' . PMPROGA_BASENAME, 'pmproga4_plugin_action_l
  * @param array  $links Array of links to be shown in plugin meta.
  * @param string $file Filename of the plugin meta is being shown for.
  */
-function pmproga_plugin_row_meta( $links, $file ) {
+function pmproga4_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-google-analytics.php' ) !== false ) {
 		$new_links = array(
 			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/google-analytics/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Docs', 'pmpro-google-analytics' ) . '</a>',
@@ -151,4 +151,4 @@ function pmproga_plugin_row_meta( $links, $file ) {
 	}
 	return $links;
 }
-add_filter( 'plugin_row_meta', 'pmproga_plugin_row_meta', 10, 2 );
+add_filter( 'plugin_row_meta', 'pmproga4_plugin_row_meta', 10, 2 );

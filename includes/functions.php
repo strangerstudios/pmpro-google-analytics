@@ -213,6 +213,11 @@ function pmproga4_checkout_events() {
         return;
     }
 
+    // Bail if the membership level is not set.
+    if ( empty( $pmpro_level ) ) {
+        return;
+    }
+
     // Build an array of product data.
     $gtag_config_ecommerce_products = array();
     $gtag_config_ecommerce_products['item_id'] = $pmpro_level->id;

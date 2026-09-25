@@ -2,6 +2,11 @@
 /**
  * All general functions goes in this file.
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 function pmproga4_load_script() {
 
     // Only run this if PMPro is installed.
@@ -73,9 +78,9 @@ function pmproga4_load_script() {
 	        gtag('config', 
             '<?php echo esc_attr( $measurement_id ); ?>',
             {
-                'currency': '<?php echo get_option( "pmpro_currency" ); ?>',
+                'currency': '<?php echo esc_js( get_option( "pmpro_currency" ) ); ?>',
                 <?php if ( is_user_logged_in() ) { ?>
-                'user_id': '<?php echo get_current_user_id(); ?>',
+                'user_id': '<?php echo (int) get_current_user_id(); ?>',
                 <?php } ?>
                 <?php if ( ! empty( $custom_dimensions ) ) { 
                     foreach ( $custom_dimensions as $key => $value ) { ?>
@@ -190,9 +195,9 @@ function pmproga4_view_item_event( $track_levels = null ) {
 <script>
     <?php foreach( $gtag_config_events_push as $gtag_config_event_push ) { ?>
         gtag( 'event', 
-            '<?php echo $gtag_config_event_push["event"]; ?>',  // Event type.
+            '<?php echo esc_js( $gtag_config_event_push["event"] ); ?>',  // Event type.
             {
-                value: <?php echo $gtag_config_event_push['value']; ?>, // Value (initial payment)
+                value: <?php echo (float) $gtag_config_event_push['value']; ?>, // Value (initial payment)
                 items: [<?php echo json_encode( $gtag_config_event_push['items'] ); ?>] // Product data.
             }
         ); // End of gtag method.
@@ -240,9 +245,9 @@ function pmproga4_checkout_events() {
         var interacted = 0;
         
         gtag( 'event', 
-            '<?php echo $gtag_config_event_push["event"]; ?>',  // Event type.
+            '<?php echo esc_js( $gtag_config_event_push["event"] ); ?>',  // Event type.
             {
-                value: <?php echo $gtag_config_event_push['value']; ?>, // Value (initial payment).
+                value: <?php echo (float) $gtag_config_event_push['value']; ?>, // Value (initial payment).
                 items: [<?php echo json_encode( $gtag_config_event_push['items'] ); ?>] // Product data.
             }
         ); // End of gtag method.
@@ -259,13 +264,13 @@ function pmproga4_checkout_events() {
         gtag( 'event', 
             'begin_checkout',  // Event type.
             {
-                value: <?php echo $gtag_config_event_push['value']; ?>, // Value (initial payment).
+                value: <?php echo (float) $gtag_config_event_push['value']; ?>, // Value (initial payment).
                 items: [<?php echo json_encode( $gtag_config_event_push['items'] ); ?>] // Product data.
             }
             ); // End of gtag method.
         
             // Use local storage to confirm the user has interacted. Cross referenced in the purchase event.
-            localStorage.setItem( 'pmproga4_purchased_level', '<?php echo $pmpro_level->id; ?>' );
+            localStorage.setItem( 'pmproga4_purchased_level', '<?php echo (int) $pmpro_level->id; ?>' );
 
         interacted++;
         });
@@ -328,18 +333,18 @@ function pmproga4_purchase_event() {
         <script>
             jQuery(document).ready(function(){
             // Only run this if the user has interacted with the checkout page within a single session.
-            if ( localStorage.getItem( 'pmproga4_purchased_level' ) !== '<?php echo $pmpro_invoice->membership_level->id; ?>' ) {
+            if ( localStorage.getItem( 'pmproga4_purchased_level' ) !== '<?php echo (int) $pmpro_invoice->membership_level->id; ?>' ) {
                 return;
             }
 
             gtag( 'event', 'purchase', {
-                transaction_id: '<?php echo $gtag_config_ecommerce_data['transaction_id']; ?>',
-                value: <?php echo $gtag_config_ecommerce_data['value']; ?>,
+                transaction_id: '<?php echo esc_js( $gtag_config_ecommerce_data['transaction_id'] ); ?>',
+                value: <?php echo (float) $gtag_config_ecommerce_data['value']; ?>,
                <?php if ( ! empty( $gtag_config_ecommerce_data['tax'] ) ) { ?>
-                tax: <?php echo $gtag_config_ecommerce_data['tax']; ?>,
+                tax: <?php echo (float) $gtag_config_ecommerce_data['tax']; ?>,
                 <?php } ?>
                 <?php if( ! empty( $gtag_config_ecommerce_data['coupon'] ) ) { ?>
-                coupon: '<?php echo $gtag_config_ecommerce_data['coupon']; ?>',
+                coupon: '<?php echo esc_js( $gtag_config_ecommerce_data['coupon'] ); ?>',
                 <?php } ?>
                 items: [ <?php echo json_encode( $gtag_config_ecommerce_products ); ?> ]
             });

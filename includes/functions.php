@@ -71,7 +71,16 @@ function pmproga4_load_script() {
     ?>
     <!-- Paid Memberships Pro - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $measurement_id ); ?>"></script>
-    <script <?php echo esc_attr($script_atts); ?>>
+    <script<?php
+    // Parse the filtered attribute string so each name and value can be escaped without mangling quotes.
+    foreach ( wp_kses_hair( $script_atts, wp_allowed_protocols() ) as $script_att ) {
+        echo ' ' . esc_attr( $script_att['name'] );
+        if ( 'n' === $script_att['vless'] ) {
+            // Newer WordPress versions return entity-encoded values, so decode before escaping to avoid double-encoding.
+            echo '="' . esc_attr( html_entity_decode( $script_att['value'], ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) . '"';
+        }
+    }
+    ?>>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
@@ -84,13 +93,13 @@ function pmproga4_load_script() {
                 <?php } ?>
                 <?php if ( ! empty( $custom_dimensions ) ) { 
                     foreach ( $custom_dimensions as $key => $value ) { ?>
-                '<?php echo esc_attr( $key ); ?>': '<?php echo esc_attr( $value ); ?>',
+                '<?php echo esc_js( $key ); ?>': '<?php echo esc_js( $value ); ?>',
                 <?php }
                 } ?>
                 <?php if ( ! empty( $user_properties ) ) { ?>
                     'user_properties': {
                     <?php foreach ( $user_properties as $key => $value ) { ?>
-                    '<?php echo esc_attr( $key ); ?>': '<?php echo esc_attr( $value ); ?>',
+                    '<?php echo esc_js( $key ); ?>': '<?php echo esc_js( $value ); ?>',
                     <?php } ?>
                     }
                 <?php } ?>

@@ -10,6 +10,10 @@
  * Domain Path: /languages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Constants
 define( 'PMPROGA_DIR', dirname( __FILE__ ) );
 define( 'PMPROGA_BASENAME', plugin_basename( __FILE__ ) );

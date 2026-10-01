@@ -3,6 +3,10 @@
  * All admin settings go here.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Register the menu link in the WordPress dashboard.
  *
@@ -69,7 +73,7 @@ function pmproga4_settings_page() {
 						<?php 
 							foreach( $all_levels as $level ) {
 								$selected = in_array( $level->id, $pmproga4_settings['track_levels'] ) ? 'selected' : '';
-								echo '<option value="' . esc_attr( $level->id ) . '" ' . $selected . '>' . esc_html( $level->name ) . '</option>';
+								echo '<option value="' . esc_attr( $level->id ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $level->name ) . '</option>';
 							}
 						?>
 						</select>
@@ -122,14 +126,14 @@ function pmproga4_save_settings() {
 
 		// Get setting for the Google Analytics Property's Measurement ID.
 		if ( isset( $_REQUEST['pmproga4_measurement_id'] ) ) {
-			$pmproga4_settings['measurement_id'] = sanitize_text_field( $_REQUEST['pmproga4_measurement_id'] );
+			$pmproga4_settings['measurement_id'] = sanitize_text_field( wp_unslash( $_REQUEST['pmproga4_measurement_id'] ) );
 		} else {
 			$pmproga4_settings['measurement_id'] = '';
 		}
 
 		// Get setting for whether to track admins.
 		if ( isset( $_REQUEST['pmproga4_dont_track_admins'] ) ) {
-			$pmproga4_settings['dont_track_admins'] = sanitize_text_field( $_REQUEST['pmproga4_dont_track_admins'] );
+			$pmproga4_settings['dont_track_admins'] = sanitize_text_field( wp_unslash( $_REQUEST['pmproga4_dont_track_admins'] ) );
 		} else {
 			$pmproga4_settings['dont_track_admins'] = '';
 		}
@@ -157,7 +161,7 @@ function pmproga4_save_settings() {
 						echo 'error';
 					}
 					?>
-					"><p><?php echo $pmpro_msg; ?></p></div>
+					"><p><?php echo esc_html( $pmpro_msg ); ?></p></div>
 				<?php
 			}
 		}

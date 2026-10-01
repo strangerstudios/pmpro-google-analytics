@@ -3,6 +3,10 @@
  * All admin (WordPress dashboard) related functions go here.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Show a message if Paid Memberships Pro is inactive or not installed.
  */
@@ -35,7 +39,7 @@ function pmproga4_required_installed() {
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
                 esc_html__( 'Google Analytics Integration', 'pmpro-google-analytics' ),
-                implode( ', ', $install_plugins ) // $install_plugins was escaped when built.
+                implode( ', ', $install_plugins ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $install_plugins was escaped when built.
             )
         );
 
@@ -66,7 +70,7 @@ function pmproga4_required_installed() {
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-google-analytics' ),
                 esc_html__( 'Google Analytics Integration', 'pmpro-google-analytics' ),
-                implode( ', ', $activate_plugins ) // $activate_plugins was escaped when built.
+                implode( ', ', $activate_plugins ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $activate_plugins was escaped when built.
             )
         );
 
@@ -85,17 +89,18 @@ function pmproga4_show_setup_notice() {
     }
 
     // Only show this notice on certain pages.
-    if ( ! isset( $_REQUEST['page'] ) ) {
+    if ( ! isset( $_REQUEST['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check to decide whether to display a notice.
         return;
     }
+    $page = sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check to decide whether to display a notice.
 
     // Only show this on the PMPro pages.
-    if ( strpos( $_REQUEST['page'], 'pmpro' ) === false ) {
+    if ( strpos( $page, 'pmpro' ) === false ) {
         return;
     }
 
     // Don't show on the actual settings page.
-    if ( $_REQUEST['page'] === 'pmpro-google-analytics' ) {
+    if ( $page === 'pmpro-google-analytics' ) {
         return;
     }
 

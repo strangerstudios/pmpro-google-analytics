@@ -27,7 +27,7 @@ Google Analytics Integration for Paid Memberships Pro includes full GA4 integrat
 = How to Use =
 1. Navigate to Settings > PMPro Google Analytics.
 1. Enter your Google Analytics Property's Measurement ID 
-1. Define settings for membership levels to track (including free checkouts) or leave blank to track all ecommerce conversions.
+1. Optionally choose which membership levels are included in the view_item event on the Membership Levels page, or leave blank to include all levels that allow new signups.
 1. Optionally exclude administrator role users from tracking.
 1. Save Settings.
 

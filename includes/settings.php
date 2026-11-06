@@ -63,7 +63,7 @@ function pmproga4_settings_page() {
 			</tbody>
 		</table>
 		<h2><?php esc_html_e( 'Enhanced Ecommerce Tracking', 'pmpro-google-analytics' ); ?></h2>
-		<p><?php esc_html_e( 'Limit which membership level checkouts are tracked as conversion events in Google Analytics. If you do not adjust this setting, all membership checkouts will be tracked, including free checkouts.', 'pmpro-google-analytics' ); ?></p>
+		<p><?php esc_html_e( 'Choose which membership levels are included in the view_item event on your Membership Levels page. If you do not adjust this setting, all levels that allow new signups are included. Checkout and purchase events are always sent for every level.', 'pmpro-google-analytics' ); ?></p>
 		<table class="form-table">
 			<tbody>
 				<tr>

@@ -31,7 +31,7 @@ Google Analytics Integration for Paid Memberships Pro includes full GA4 integrat
 1. Optionally exclude administrator role users from tracking.
 1. Save Settings.
 
-View full documentation at: https://www.paidmembershipspro.com/add-ons/google-analytics/
+View full documentation at: https://www.paidmembershipspro.com/documentation/add-on-docs/google-analytics/
 
 == Changelog ==
 = 1.0.4 - 2026-10-01 =

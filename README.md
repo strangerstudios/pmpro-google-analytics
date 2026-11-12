@@ -13,7 +13,7 @@ Google Analytics Integration for Paid Memberships Pro includes full GA4 integrat
 For more information please visit [paidmembershipspro.com/add-ons/google-analytics](https://www.paidmembershipspro.com/add-ons/google-analytics)
 
 ## Installation ##
-For detailed installation steps, visit the [documentation](https://www.paidmembershipspro.com/add-ons/google-analytics) page.
+For detailed installation steps, visit the [documentation](https://www.paidmembershipspro.com/documentation/add-on-docs/google-analytics/) page.
 
 1. Download the current development ZIP file directly: `https://github.com/strangerstudios/pmpro-google-analytics/archive/dev.zip`
 

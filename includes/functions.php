@@ -135,7 +135,7 @@ function pmproga4_view_item_event( $track_levels = null ) {
      *
      * @return bool Modified flag for whether to track the 'view item' event.
      */
-    $track_view_item_event = apply_filters( 'pmproga4_track_view_item_event', is_page( $pmpro_pages['levels'] ) );
+    $track_view_item_event = apply_filters( 'pmproga4_track_view_item_event', ! empty( $pmpro_pages['levels'] ) && is_page( $pmpro_pages['levels'] ) );
 
     // Return if we should not track this event.
     if ( empty( $track_view_item_event ) ) {
@@ -296,7 +296,7 @@ function pmproga4_purchase_event() {
     global $pmpro_pages, $pmpro_invoice, $current_user;
 
     // Only run on the confirmation page.
-    if ( ! is_page( $pmpro_pages['confirmation'] ) ) {
+    if ( empty( $pmpro_pages['confirmation'] ) || ! is_page( $pmpro_pages['confirmation'] ) ) {
         return;
     }
 

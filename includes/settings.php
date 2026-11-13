@@ -96,7 +96,7 @@ function pmproga4_settings_page() {
 					<th scope="row" valign="top"><?php esc_html_e( 'Admin Users', 'pmpro-google-analytics' ); ?></th>
 					<td>
 						<input type="checkbox" name="pmproga4_dont_track_admins" id="pmproga4_dont_track_admins" value="1" <?php checked( $pmproga4_settings['dont_track_admins'], 1 ); ?>/>
-						<label for="pmproga4_dont_track_admins"><?php esc_html_e( 'Disable tracking of adminstrator users.', 'pmpro-google-analytics' ); ?></label>
+						<label for="pmproga4_dont_track_admins"><?php esc_html_e( 'Disable tracking of administrator users.', 'pmpro-google-analytics' ); ?></label>
 					</td>
 				</tr>
 			</tbody>

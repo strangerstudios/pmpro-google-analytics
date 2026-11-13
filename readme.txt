@@ -3,7 +3,7 @@ Contributors: strangerstudios, andrewza
 Tags: paid memberships pro, pmpro, google analytics, analytics, ga4, conversions
 Requires at least: 5.2
 Tested up to: 7.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 
 Connect Paid Memberships Pro to Google Analytics 4 to measure traffic, interactions, and ecommerce conversions across your membership site.
 
@@ -34,6 +34,13 @@ Google Analytics Integration for Paid Memberships Pro includes full GA4 integrat
 View full documentation at: https://www.paidmembershipspro.com/documentation/add-on-docs/google-analytics/
 
 == Changelog ==
+= 1.0.5 - 2026-11-13 =
+* ENHANCEMENT: Updated documentation links to point to the new Google Analytics Add On documentation. #13 (@dparker1005)
+* BUG FIX: Fixed an issue where the `view_item` and `purchase` event code could run on every page if the Levels or Confirmation page setting was empty. #11 (@dparker1005)
+* BUG FIX: Fixed a typo in the "Disable tracking of administrator users" setting label. #12 (@dparker1005)
+* BUG FIX: Clarified that the Levels to Track setting only controls which levels are included in the `view_item` event. Checkout and purchase events are always sent for every level. #14 (@dparker1005)
+* BUG FIX: The `view_item` event now sends the plain membership level ID as the `item_id`, matching the `add_to_cart`, `begin_checkout`, and `purchase` events. Google Analytics reports that filter `view_item` on the old "pmpro-{ID}" format will need to be updated. #15 (@dparker1005)
+
 = 1.0.4 - 2026-10-01 =
 * SECURITY: Improved sanitization and escaping throughout the plugin to resolve Plugin Check security findings. #10 (@dparker1005)
 * BUG FIX: Fixed custom dimension and user property values containing a backslash breaking the Google Analytics config script. These values are now escaped for JavaScript instead of as HTML attributes. #10 (@dparker1005)

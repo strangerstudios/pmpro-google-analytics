@@ -149,7 +149,7 @@ add_filter( 'plugin_action_links_' . PMPROGA_BASENAME, 'pmproga4_plugin_action_l
 function pmproga4_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-google-analytics.php' ) !== false ) {
 		$new_links = array(
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/google-analytics/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Docs', 'pmpro-google-analytics' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/documentation/add-on-docs/google-analytics/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Docs', 'pmpro-google-analytics' ) . '</a>',
 			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-google-analytics' ) . '">' . esc_html__( 'Support', 'pmpro-google-analytics' ) . '</a>',
 		);
 		$links = array_merge( $links, $new_links );

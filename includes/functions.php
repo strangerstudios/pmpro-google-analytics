@@ -186,7 +186,7 @@ function pmproga4_view_item_event( $track_levels = null ) {
 
         // Build an array of product data.
         $gtag_config_ecommerce_products = array();
-        $gtag_config_ecommerce_products['item_id'] = 'pmpro-' . $pmpro_level->id;
+        $gtag_config_ecommerce_products['item_id'] = $pmpro_level->id;
         $gtag_config_ecommerce_products['item_name'] = $pmpro_level->name;
         $gtag_config_ecommerce_products['affiliation'] = get_bloginfo( 'name' );
         $gtag_config_ecommerce_products['quantity'] = 1;
